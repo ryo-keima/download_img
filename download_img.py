@@ -15,7 +15,11 @@ def down_load_img(url, path):
     filename = values[-1]
     filename = filename.split('.')[0]
     # ファイルパスの指定
-    path = '{}/{}.jpg'.format(path, filename)
+    if os.name == 'posix':
+        path = '{}/{}.jpg'.format(path, filename)
+    elif os.name == 'nt':
+        path = '{}\\{}.jpg'.format(path, filename)
+    
     print(path)
 
     # 画像URLからダウンロード
